@@ -79,8 +79,8 @@ if test -s /etc/nginx/nginx.conf; then
 	blue "       开始配置trojan-web"
 	green "================================="
 	sleep 2s
-  sed -i '/ExecStart/s/trojan web -p 88/trojan web/g' /etc/systemd/system/trojan-web.service
-  sed -i '/ExecStart/s/trojan web/trojan web -p 88/g' /etc/systemd/system/trojan-web.service
+  sed -i '/ExecStart/s/trojan web -p 81/trojan web/g' /etc/systemd/system/trojan-web.service
+  sed -i '/ExecStart/s/trojan web/trojan web -p 81/g' /etc/systemd/system/trojan-web.service
   systemctl daemon-reload
   systemctl restart trojan-web
   systemctl restart nginx
