@@ -58,13 +58,7 @@ if test -s /etc/nginx/nginx.conf; then
 	blue "     请输入Trojan绑定的域名"
 	green "================================="
 	read your_domain
-	green "================================="
-	blue "    请命名管理路径（英文或数字）"
-	green "================================="
-	read your_file
-	sleep 2s
   sed -i "s/localhost/$your_domain/;" /etc/nginx/nginx.conf
-  sed -i "s/yourfile/$your_file/;" /etc/nginx/nginx.conf
 	green " "
 	green "================================="
 	 blue "    开始下载伪装站点源码并部署"
@@ -79,8 +73,8 @@ if test -s /etc/nginx/nginx.conf; then
 	blue "       开始配置trojan-web"
 	green "================================="
 	sleep 2s
-  sed -i '/ExecStart/s/trojan web -p 81/trojan web/g' /etc/systemd/system/trojan-web.service
-  sed -i '/ExecStart/s/trojan web/trojan web -p 81/g' /etc/systemd/system/trojan-web.service
+  sed -i '/ExecStart/s/trojan web -p 8080/trojan web/g' /etc/systemd/system/trojan-web.service
+  sed -i '/ExecStart/s/trojan web/trojan web -p 8080/g' /etc/systemd/system/trojan-web.service
   systemctl daemon-reload
   systemctl restart trojan-web
   systemctl restart nginx
@@ -95,7 +89,7 @@ if test -s /etc/nginx/nginx.conf; then
 	 blue "  脚本交流电报群：https://goii.cc/tg"
 	green " "
 	 blue "  伪装站点目录 /usr/share/nginx/html "
-	 blue "  面板管理地址 http://$your_domain/$your_file "
+	 blue "  面板管理地址 http://$your_domain:8080 "
 	green "=================================================================="
 else
 	green "==============================="
